@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\begin{document}
+
+
+The project requirements specification outlines that the Monster Mash game should be implemented in a server-client architecture over the World Wide Web, where the application resides and runs on a web application server, with which the user (client) interacts using a standard web browser.
+
+
+The software stack chosen for this project consists of the following:
+\begin{itemize}
+\item \textbf{Java EE}
+\item \textbf{GlassFish} Java EE web application server
+\item \textbf{PostgreSQL} SQL RDBMS server
+\item \textbf{SVN} software versioning and revision control system
+\end{itemize}
+
+These software solutions are both open-source, and so are free to use, and are already provided by the university's servers.
+
+An important condition in the design of the system is that it should be able to be deployed to, run and maintained on servers provided by the university. The system should not have to rely on services provided by a third-party to be in service. Firstly, because there can not be any costs in the system's operation, but even free services, such as Google's App Engine, may force development against proprietary API's, forcing vendor lock in, and introduce risks of downtime which would be outside of our control.
+
+\paragraph{Java EE}
+
+The game logic and its presentation will be developed in Java EE Servlets.
+
+The specification requires that the application be written using Java.
+Java Enterprise Edition is the standard API for delivering dynamic web applications written in Java. A Java EE application, or Servlet, is run on the server, rather than the user's machine.
+
+It works a lot like a standard HTTP web service. A user requests a page, the server responds to that request and a page is generated and sent to the client, which is displayed in the users web browser.
+This is better than an applet, which is basically a Swing application running inside the browser, as it does not require Java to be installed on the client's machine. All they need is a standard web browser.
+
+\paragraph{GlassFish}
+
+Java EE applications are run in a web application server, which works like a standard HTTP web server, handling HTTP requests, but refers those requests to a Servlet, which it runs and handles various users sessions to.
+
+There are several Java EE servers available. GlassFish was chosen not just because it is already set up on university servers, but because it provides a lot of features such as RDBMS connection management, and support for numerous API's which aid in the development, deployment and integration of Java Servlets.
+
+\paragraph{PostgreSQL}
+
+The application will need to store user data, such as user details, monsters, friends etc.
+A relational database is best suited for this as it extends the Object-Oriented approach of a Java application model.
+Java EE has a strong API for persisting data to SQL, so this was chosen over other methods of data persistence.
+The Java Servlet interfaces with the server using through a standard socket connection, and acts as a controller between state in the application and data persistence in the database.
+
+
+\subsection{Server-Server Communication}
+
+Another requirement is that the application should be able to communicate with other group's implementations of the game.
+
+For this, our server needs to be able to communicate with other servers using some defined server-server communication standard.
+
+This standard should require that each group's server should implement a common interface, allowing servers to share information such as friend requests, fight requests etc.
+
+By defining a standard should allow each group to make their own implementation of that standard, instead of having one group complete an implementation and then force others to use that implementation.
+
+The standard has yet to be defined, but a task force group has been set up to open discussions on a standard.
+
+
+
+\end{document}

@@ -1,0 +1,42 @@
+Title:			Group Project 03
+Purpose:		Weekly Project Meeting
+Date:			06/11/2012
+Author:			Simon Evans (sie5)
+Version:		1.0
+Circulation:		cs-group-03 mailing list
+Place of meeting:	Llandinam C55
+Persons present:	James Bowcott, Simon Evans, Craig Heptinstall, Kyle Vaughan, Scott Roe
+Persons missing:	Marcus Harrison, Aled Morgan
+
+Main business:
+* James attended standards meeting
+* Issue with fights being requested with monsters that don't exist - James to look at this problem
+* UML Design required for design spec
+* Star UML - only on windows, however decision made to use it anyway
+* Problems with SVN - Marcus to move documents from man -> doc, etc.
+
+Standards meeting:
+* REST API for inter server communication to send data through http. Saves having to use sockets, etc.
+* GET for monster info, user info, etc. 
+* Sent back using JSON
+* WASL WADL
+* REST integrates well with Net Beans
+* Problems for testing since next meeting is after test plan deadline…
+* Could in theory use REST for local server
+
+Design Plan:
+* Scott 
+* James 
+* Shaun 
+* Kami
+* As much server side validation as possible, not much JavaScript, if any.
+
+Other business
+* Scott to describe the tasks from the Gantt
+* Updated Gantt chart needed - this afternoon
+* SVN rename of test plan component - test plan used to be called x now called y, etc. 
+* New draft Project Plan
+* If big changes made, formal review
+* No scheduled meeting for the following week
+* Scott to send document for time sheets 
+* Shared Google doc to be used

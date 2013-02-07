@@ -1,0 +1,35 @@
+Title:			Group Project 03
+Purpose:		Weekly Project Meeting
+Date:			20/11/2012
+Author:			Simon Evans (sie5)
+Version:		1.0
+Circulation:		cs-group-03 mailing list
+Place of meeting:	Llandinam C55
+Persons present:	Simon Evans, Scott Roe, Aled Morgan, Kami, James Bowcott, Craig Heptinstsall, Marcus Harrison, Shaun Close
+Persons missing:	None
+
+Main Business:
+* Design spec in for the friday of week beginning 3rd - 7th December, demo for 11th in Tuesday's slot
+* SVN tags/branches - would be best if the whole project was tagged, as a snapshot for each stage.If the design (for example) moves on, and requires a change to the testing, group can quickly look back through tags for the correct version
+* James is developing the prototype, feeding his findings from that into the design spec. 
+* Major classes decided upon
+* Relationships between monsters and owners, programming constructs have to be obvious for the prototype
+* Prototype detail should be down to the methods used
+* Authentication: Local/Remote, login form based authentication with password hashing
+* James has written a filter for logging in - making sure admin users only get admin rights
+* JPA to create the tables
+
+Design spec:
+* James - server-server
+* Marcus - model, implementation of the monsters, genetics, age rate, etc
+* Kami - webpage styles, difference in pages that user/admin sees, etc.
+* Review meeting 1: Wednesday 28th, design team + Kyle + Craig + Scott
+
+Standards progress:
+* James is submitting a draft spec today to the Facebook group, will email Bernie
+* 10-11 other groups to communicate with
+* HTTP/REST/JSON/Data design under consideration
+* Attributes/fight details are currently not agreed upon across groups
+* Breeding/market discussed but not decided upon
+
+

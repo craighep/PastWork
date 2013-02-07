@@ -1,0 +1,54 @@
+Title:			Group Project 03
+Purpose:		Weekly Project Meeting
+Date:			30/10/2012
+Author:			James Bowcott (jab41)
+Version:		1.0
+Circulation:		cs-group-03 mailing list
+Place of meeting:	Llandinam C55
+Persons present:	James Bowcott, Shaun Close, Marcus Harrison, Craig Heptinstall, Aled Morgan, Kamilia Tacickaja, Kyle Vaughan
+Persons missing:	Simon Evans, Scott Roe
+
+Matters arising:
+
+* Discussion of what was achieved at yesterday's review meeting
+* The project plan was deemed final at yesterday's review meeting after some fixes, which were quickly enacted. The final document source was committed yesterday evening.
+* Tools for UML diagrams. Kamilia recommended ObjectAid (www.objectaid.com), a plugin for Eclipse. Marcus recommended StarUML.
+* Problems with SVN
+  - The organisation of the SVN repository was incorrect and did not conform to the specifications as set out in SE QA 08.
+  - This was noted yesterday via email and Marcus refactored the structure before the meeting 
+  - During this refactoring, documentation was placed in the wrong folder, and should be under docs, not man.
+  - There seems to be a lack of or confusion of versioning policy, and duplicate/unnecessary copies of documents
+  - Documents should be assigned a Task ID
+  - Only the documentation source (LaTeX) should be committed to the repository, and not PDF copies.
+  - For tools, Eclipse should provide a consistent environment across platforms.
+  - Again, DO NOT MANAGE FOLDERS USING STANDARD O.S. FILE MANAGEMENT. All organisation should be done through a SVN client.
+* Gantt chart
+  - The Gantt Chart is not adequate for use during the project, and will require some work.
+  - There needs to be more detail, listing the tasks that need to happen to deliver a deliverable.
+  - It should be so that tasks overlap, as there will be more than one task happening at once for a deliverable.
+  - There should be 'milestones' in addition to deliverable deadlines.
+  - The time scale needs to be more specific than just weeks.
+  - For the project plan this Gantt chart will do. But a better Gantt chart should be produced as soon as possible as this will aid project management greatly, and will be needed for the final report.
+* Standards meeting
+  - James is to attend the Standard Meeting on Wednesday.
+
+
+New business:
+
+* Project Plan
+  - A PDF copy of the plan needs to be submitted to the appropriate place on BlackBoard (as of time of writing this has been done)
+* Testing plan
+  - A draft of the testing plan should start to be produced.
+  - A group has been formed to produce the testing plan: Kyle, Craig and Aled
+  - This group should try to have meetings to collaborate on the plan.
+* Design plan
+  - A group has been formed to produce the design plan: Scott, James, Shaun and Kamilia
+  - Again, the group should try and plan meetings.
+
+
+Actions:
+
+* Move documentation in the repo from the man folder to the docs folder.
+* Clean up the docs folder, removing duplicates and PDF files. Ensure versioning and task ID's are set.
+* All members, especially Marcus, should read up in SE QA 08 on how to properly use the SVN repository.
+* Scott needs to improve/redo the Gantt chart, to provide more detail of tasks, not just deadlines, and a finer grain timescale.

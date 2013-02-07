@@ -1,0 +1,104 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx} \usepackage{caption} \usepackage{pdfpages} \usepackage{pdflscape} \usepackage[margin=0.8in]{geometry} \usepackage{fancyhdr} \usepackage{pdfpages} \usepackage{lastpage}
+\begin{document}
+\pagestyle{fancy}
+\fancyfoot[RO, LE] {\thepage\ of \pageref{LastPage}}
+\fancyhead[LO,LE]{Name of doc, version, status} %Name of doc, version, draf/release
+\fancyfoot[C]{Aberystwyth University / Computer Science} %Footer - no changes necessary
+\begin{center}
+\textsc{\LARGE The Software Development Life Cycle}\\[1.5cm]\includegraphics[width=0.15\textwidth]{img/monster.png}\\[1.5cm] %Monster image
+\textsc{\Large Monster Mash - Name of document}\\[0.5cm] %Edit for document title
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+First name \textsc{Second name}\\
+%Repeat above line for more authors
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Task ID:}
+%Name of task\\
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Version:}
+%Name of version\\
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Status:}
+%Status of document\\
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+%Computer Science Dept Address
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+Department of Computer Science\\
+Aberystwyth University\\
+Aberystwyth\\
+Ceredigion\\
+SY23 3DB\\
+\end{flushleft}
+\end{minipage}
+\vfill
+{\large \today}
+\end{center}
+\clearpage
+\setlength\parindent{0pt}
+
+%Table of contents
+
+\tableofcontents
+\clearpage
+
+%First section
+
+\section{Introduction}
+
+\subsection{Subsection title}
+
+\clearpage
+
+%Second section
+
+\section{Overview}
+
+\subsection{Subsection title}
+
+\clearpage
+
+%Third section
+
+\section{Third section title}
+\subsection{Subsection title}
+
+\clearpage
+
+\section{References}
+[1] \textit{Title of ref.} Author, version, etc.
+%Reference here 
+\\ \relax \\ \relax
+
+\clearpage
+
+\section{Document History}
+\begin{tabular}{|l | l | l | l | l |}
+\hline
+Version & CCF No. & Date & Changes made to Document & Changed by \\
+\hline
+Version No. & CCF No. & Date & Changes & Author\\
+\hline
+\end{tabular}
+\end{document}

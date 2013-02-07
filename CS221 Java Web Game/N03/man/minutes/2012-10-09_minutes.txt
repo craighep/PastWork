@@ -1,0 +1,82 @@
+CS221 Project Group 3 Weekly Project Meeting Minutes for 9/10/12
+Persons Present:                All members except Shaun Close, and Project Manager Nigel Hardy
+Place of meeting:               Llandinam C55
+Date:                           Tuesday, October 9th 10:00 am
+Circulation:                    cs-group-03 mailing list, which should include all members of the project group.
+                                        Unsure if Nigel (Project Manager) is included in list, so sending to his address also.
+Minutes author:         James Bowcott
+Version:                                1.0
+
+These Minutes have been produced to conform to SE QA 03 Section 2 as much as possible
+Any issues or inaccuracies please let me know
+
+Matters Arising
+This is the first weekly project group meeting.
+There may have been some confusion as to which C55 the meetings are held in.
+Meeting are held every week on Tuesdays at 10:00 am in C55 in the Llandinam Building, not Hugh Owen.
+That is the first floor, next to the stairs, opposite the Delphinium.
+
+New Business
+Meeting Minutes
+At every weekly group meeting one person needs to volunteer to take notes of all major points discussed in the meeting to produce meeting minutes.
+The minutes should be produced to the standard as outlined in SE QA 03, Section 2.
+Minutes should be typed up and sent via email to all members of the group and the project manager within 24 hours of the meeting.
+The minutes should also be stored in the project configuration directory, when one is set up and available (see Version and Configuration Control).
+James volunteered to take notes and produce the first minutes.
+Project Roles
+Need to be discussed and assigned to each member of the group.
+There are 4 formal (managerial) roles:
+Project Leader & Deputy Leader (see Project Leader Responsibilities)
+Quality Assurance Manager & Deputy Manager (see QA Manager Responsibilities)
+Development roles include (may or may not be formally defined):
+Design (several members may form a Design Team)
+Coding
+Testing (QA)
+Documentation
+Technical Lead / Research (part of Design & Coding?)
+Project Specification & QA documents
+There may have been some issues in accessing the content on BlackBoard but problems seem to be sorted now. Members should check the Notifications and What's New sections on the Module homepage regularly for updated and new documents.
+It was recommended that members download all of the documents, or at least the documents relevant to their roles, for offline access.
+All members should read the Project Specification
+Version and Configuration Control
+As specified in SE QA 08
+Version Control system that was recommended was SVN.
+SVN is provided by and supported by the University.
+While a repository has been set up for the group, the members may not yet be allocated to it.
+The repository will be used for version control of software as well as documentation.
+Collaboration in documentation, such as the Design Specification and Project Plan, will be done through SVN.
+Marcus expressed experience with SVN
+Documentation
+All members will be required to produce documentation relevant to their role
+Templates are available for documentation (BlackBoard?) in Word, LaTeX, and (maybe?) OpenOffice
+Marcus recommended documentation be produced using LaTeX, as it works well with SVN.
+Project Leader Responsibilities
+The Project Leader (and Deputy) is responsible for the following:
+The 'everyday' running of the project
+Delegating tasks to other members
+Ensuring the project is being conducted to the specifications
+Setting schedules and targets, and ensuring deliverables are delivered to that schedule.
+Problem management
+Listening to and recording any changes in the project
+The Leader will report directly to the Project Manager
+The Project Leader's responsibilities are described in SE QA 02
+QA Manager Responsibilities
+There may have been some confusion and overlap of the responsibilities of the project leader and the QA Manager.
+The QA Manager's responsibilities are described in SE QA 08
+
+Action for next week
+Everyone present took on an initial role for this week to do some research. These roles may not be final:
+James & Aled - Technologies Research
+Marcus - SVN & LaTeX
+Simon - QA
+Scott - Documentation
+Kamilia - Front End
+Craig - Design Specification
+Kyle - Testing
+All need to research the Project Specification
+It is expected that everyone should do some research and present it to the next project group meeting.
+Formally designate roles.
+Agree of Version and Configuration Control system and documentation tools.
+
+AOB
+None

@@ -1,0 +1,28 @@
+Title: Group Project 03
+Purpose: Review meeting for SE_03_OVERVIEW
+People present: Craig Heptinstall, Kyle Vaughan, Scott Roe, Simon Evans, Kamilia Tacickaja, Aled Morgan
+Date: 29/10/12
+Place: Llandinam Delphinium
+Author of the Minutes: Simon Evans
+Date the Minutes were produced: 29/10/12
+Version: 1.0
+
+Matters arising:
+
+Review of Project Plan
+
+Main business:
+
+* Version of most recent document incorrect
+* Spelling errors to be changed
+* Gantt chart to be updated/edited
+* UML diagram (fig 4) to be removed
+* References and Document history to be added
+
+Action for next week/meeting:
+
+* Review for SE_03_Testing_1 - 9th of November
+* No scheduled meeting for next monday at 11am, unless decided later on in the week
+* Simon to send around LaTeX template
+* Timesheets need to be done and sent to Scott ASAP - discussion of potentially using a shared Google document for this
+* James to make prototype and attending the standards meeting

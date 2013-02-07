@@ -1,0 +1,41 @@
+\section{Input/Output}
+
+\textbf{*} Login \begin{math}\to\end{math} input: username, password \begin{math}\to\end{math} LoginServerlet.doGet(request, response) \begin{math}\to\end{math} output: sendRedirect or error\\
+
+\textbf{*} Register \begin{math}\to\end{math} input: username, password, name \begin{math}\to\end{math} RegisterServerlet.doPost(request, response) \begin{math}\to\end{math} output: new User(username, name, password) or error\\
+
+\textbf{*} Friends list \begin{math}\to\end{math} input: localUserId \begin{math}\to\end{math} FriendsFacade. findFriends(localUserId) \begin{math}\to\end{math} output: List\begin{math}<\end{math}Friendship\begin{math}>\end{math}\\
+
+\textbf{*} Search friends \begin{math}\to\end{math} input: userId \begin{math}\to\end{math} UserFacade. findByUserId(userId) \begin{math}\to\end{math} output: User\\
+
+\textbf{*} Requests (Friend invite) \begin{math}\to\end{math}  input: localUserId \begin{math}\to\end{math} FriendsFacade. findFriends(localUserId) \begin{math}\to\end{math} output: List\begin{math}<\end{math}Friendship\begin{math}>\end{math}\\
+
+\textbf{*} Accept (Friendship) \begin{math}\to\end{math} input: localUserId, remoteUserId, remoteServerId, localKey, remoteKey \begin{math}\to\end{math} FriendshipController. acceptRequest(Friendship(localUserId, remoteUserId, remoteServerId, localKey, remoteKey)) \begin{math}\to\end{math} output: friend added\\
+
+\textbf{*} Add friends \begin{math}\to\end{math} input: localUserId, remoteUserId, remoteServerId \begin{math}\to\end{math} FriendshipController. createFriendRequest(localUserId, remoteUserId, remoteServerId) \begin{math}\to\end{math} output: Friendship\\
+
+\textbf{*} Remove friend \begin{math}\to\end{math} input: Friendship \begin{math}\to\end{math}  FriendshipController.unfriend(Friendship) \begin{math}\to\end{math} output: removed friend \\
+
+\textbf{*} Monster List \begin{math}\to\end{math} ?? (input: localUserId \begin{math}\to\end{math} MonsterFacade.findMonsters(localUserId) \begin{math}\to\end{math} output: List\begin{math}<\end{math}Monster\begin{math}>\end{math})\\
+
+\textbf{*} Requests (sell monster) \begin{math}\to\end{math} ?? (input: monsterId, price \begin{math}\to\end{math} MonsterController.sellMonster(monsterId, price) \begin{math}\to\end{math} output: )\\
+
+\textbf{*} Requests (offer monster for breeding) \begin{math}\to\end{math} ?? (input: monsterId, price \begin{math}\to\end{math} MonsterController.offerBreeding(monsterId, price) \begin{math}\to\end{math} output: )\\
+
+\textbf{*} Requests (monster breed) \begin{math}\to\end{math} input: maleMonsterId, femaleMonsterId) \begin{math}\to\end{math}  MonsterController.breed(maleMonsterId, femaleMonsterId) \begin{math}\to\end{math} output:  Monster\\
+
+\textbf{*} Requests (loan monster) \begin{math}\to\end{math} ?? (input:  monsterId, price \begin{math}\to\end{math}  MonsterController.loanMonster(monsterId, price) \begin{math}\to\end{math} output: )\\
+
+\textbf{*} Requests (monster battle) \begin{math}\to\end{math} ?? (input: localUserId, monsterId, remoteUserId, remoteMonsterId \begin{math}\to\end{math} MonsterController.requestBattle(localUserId, monsterId, remoteUserId, remoteMonsterId) \begin{math}\to\end{math} output: )\\
+
+\textbf{*} Change monster name \begin{math}\to\end{math} ?? (input:  monsterName \begin{math}\to\end{math}  MonsterEntity.setName(monsterName) \begin{math}\to\end{math} output: changed name)\\
+
+\textbf{*} Delete monster \begin{math}\to\end{math} ?? (input:  monsterId \begin{math}\to\end{math}  MonsterFacade.deleteMonster(monsterId) \begin{math}\to\end{math} output: deleted monster)\\
+
+\textbf{*} Accept (buy monster) \begin{math}\to\end{math} ?? (input:  userId, monsterId \begin{math}\to\end{math} ??)\\
+
+\textbf{*} Accept (monster battle) \begin{math}\to\end{math} input:  monster1, monster2 \begin{math}\to\end{math}  MonsterController.fight(monster1, monster2) \begin{math}\to\end{math} output: fight has occured\\ 
+
+\textbf{*} Accept (breed monster) \begin{math}\to\end{math} ?? (input:  localUserId, monsterId, remoteUserId, remoteMonsterId \begin{math}\to\end{math}  MonsterController.breed(MonsterFacade.findMonsterById(monsterId), MonsterFacade.findMonsterById(remoteMonsterId)) \begin{math}\to\end{math} output:  Monster\\
+
+\textbf{*} Accept (loan monster) \begin{math}\to\end{math} ?? (input:  userId, monsterId \begin{math}\to\end{math} ??)\\

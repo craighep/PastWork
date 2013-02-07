@@ -1,0 +1,321 @@
+\section{Packages and significant classes}
+Classes in the application are organised in packages, where each class of a certain type are in the same package. Classes in packages are expected to depend on and interact with other classes in other packages, so packages are not used for scope, just organisation.\\
+
+This section describes each package and what the classes in those packages are expected to do. It also describes each class in the package, and gives a interface description of significant classes.
+
+\subsection{Entity package}
+Entity classes define a data object which can be persisted to a database via JPA. Refer to \textbf{Section 4 Data Entity Design} for a description of these classes and how they should be used.
+
+\subsection{Servlet package}
+Servlet classes are invoked when a client requests a "page" in the application. The servlet mapped to the URL address gets instantiated and is tasked with responding to a HTTP request. The request may contain posted data, such as that from a form. It is the servlet's job to call methods in other parts of the application to respond appropriately to a request, and to get the data that will be required in the response. The design of the servlets in this application is not to produce the 'view' of the response, instead it forwards the data it has obtained to a JSP page. In this sense a servlet a view controller.\\
+
+All servlets extend the Java EE class \texttt{HttpServlet}, which defines the methods which get invoked for each HTTP method that a client can access, such as \texttt{GET} and \texttt{POST}. A servlet should override the appropriate methods to provide the service that the servlet is expected to provide. They can have any other methods as well, but should defer significant application logic to the appropriate Controller classes where appropriate.
+A servlet should not output any HTML in its response to a \texttt{GET} request. Instead, all HTML should defined in a JSP page for a particular servlet.\\
+
+To produce a visible page to a user's web browser, a servlet should override the \texttt{doGet} method. It should obtain any data that it needs to display to the user through Controllers and/or Facades, store the retrieved data in 'attributes' of the passed in \texttt{HttpServletRequest} object, then forward that request to the appropriate JSP page, where the JSP reads the attributes and inserts the data into it's HTML content, which arrives at the user's browser.\\
+
+Here is a simple example of a servlet in the prototype, \texttt{ServersServlet}:
+\begin{small}\begin{verbatim}
+@WebServlet(name = "Servers", urlPatterns = {"/Servers"})
+public class ServersServlet extends HttpServlet {
+
+    @EJB
+    ServerFacade serverFacade;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    	List<Server> servers = serverFacade.findAll();
+    	request.setAttribute("servers", servers);
+    	request.getRequestDispatcher("servers.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    	String name = request.getParameter("name");
+    	String serviceRootURL = request.getParameter("serviceRootURL");
+    	
+    	Server server = new Server(name, serviceRootURL);
+    	serverFacade.create(server);
+    	
+    	doGet(request, response);
+    }
+}
+\end{verbatim}\end{small}
+
+
+There will be a servlet for each 'page' in the application, so for example the login page will have a LoginServlet.
+All servlets will be similar to the example above, retrieving entity data through a facade to forward to a JSP, and responding to \texttt{POST} requests by creating entities, persisting them through a facade, or invoking methods in a Controller, using parameters in the request object.
+
+\subsection{Controller package}
+Controller classes contain the majority of the application's logic. They define it's behaviour. While simple tasks can be performed in a servlet class, more complex behaviour and functionality which may need to be used in multiple servlets should be contained in a controller class. The object-oriented design of the application is such that there should be individual controllers for each type of entity being used and manipulated. In other words, there should be a Controller class for each Entity class, should it require one.\\
+
+There are also special controllers which control other aspects of the application, like handling user login.\\
+All controller classes should have \texttt{@Stateless} annotations to make them Stateless Session Beans, which can be injected into dependent classes using the \texttt{@EJB} annotation. They should not have to be instantiated each time they need to be used.
+
+
+
+%\paragraph{UserController} Controls user operations. A lot of user operations, such as creation, updating and verification can be done through the facade, as these are standard data operations, but there are a few special operations that make more sense in a controller, such as managing a user's money.
+\paragraph{FriendshipController} Controls friendship operations, like creating friend requests, accepting/rejecting friend requests and deleting friend requests. This controller will also invoke the FriendshipClient class, to send friendship information to remote servers via REST.
+
+\begin{small}\begin{verbatim}
+@Stateless
+public class FriendshipController {
+    @EJB FriendshipFacade friendshipFacade;
+    @EJB ServerFacade serverFacade;
+    
+    public Friendship createFriendRequest(User localUser, String remoteUserId, Server remoteServer);
+    public Friendship createFriendRequest(String localUserId, String remoteUserId, String remoteServerId);
+    public boolean acceptRequest(Friendship f);
+    public void unfriend(Friendship f);   
+}
+\end{verbatim}\end{small}
+
+%Marcus
+\paragraph{MonsterController} The MonsterController controls the different aspects that affect monsters, including the change of monster statistics over time, battles, breeding, genetics, and buying/selling monsters.
+As a result, this class is also responsible for the creation of Monster objects: as this class contains the methods for randomisation, this will be used to randomise and vary the base attributes of the monster, as well as selecting a parent monster to inherit genes from if any.
+\begin{small}\begin{verbatim}
+@Stateless
+public class MonsterController {
+    public static Monster generate();
+    public static Monster breed(Monster m1, Monster m2);
+    public static Monster fight(Monster m1, Monster m2);
+    public static double baseHealth(Monster m);
+    public static double health(Monster m);
+    public static double strength(Monster m);
+    public static double dodge(Monster m);
+}
+\end{verbatim}\end{small}
+%/Marcus
+\paragraph{SessionController}
+The SessionController controls user login, logoff and retrieval of information about the logged in user for a passed in HTTP session object.
+\\A HTTP Session object is passed to a servlet as part of the request. It persists between requests as long as the user's web browser stays open. We store information about the logged in user in these sessions, specifically, a \textbf{User} entity object.
+\\The methods in this class expect a \texttt{HttpSession} object, which can be retrieved from the \texttt{HttpServletRequest} object that gets passed in to a servlet method.
+\begin{small}\begin{verbatim}
+@Stateless
+public class SessionController {
+    @EJB UserFacade userFacade;
+    
+    public User getSessionUser(HttpSession session);
+    public boolean verifySessionUser(HttpSession session);
+    public boolean login(HttpSession session, String username, String password);
+    public void logoff(HttpSession session);
+}
+\end{verbatim}\end{small}
+
+
+\subsection{Facade package}
+Facades are classes which expose and simplify the functionality for retrieving and persisting data entities to and from the database. It abstracts the JPA side of the application away from the rest of the app, reducing dependencies and providing a single interface to data so that data persistence code does not get spread across different parts of the architecture. Through a facade you can do core data transactions, such as retrieving, persisting, updating and removing Entity objects, but by having a facade for each entity, you can provide special convenience methods which make sense for that particular entity. For example, the friends facade can retrieve a list of friendships of a particular user, or the monsters facade can retrieve a list of monsters for a particular user.\\
+There are two kinds of facade in the application, one to manage entities internally within the application, and one to provide access to data for the REST service. These two kinds of Facade are organised into their own sub-package of the Facade package: Session and Service.
+
+\paragraph{AbstractFacade}
+There is an abstract facade class which all Facade classes should extend. It provides common data access operations for any entity class, such as retrieving all objects in the database, persisting new objects, removing them etc.
+
+\begin{small}\begin{verbatim}
+public abstract class AbstractFacade<T> {
+    private Class<T> entityClass;
+
+    public AbstractFacade(Class<T> entityClass);
+
+    protected abstract EntityManager getEntityManager();
+    
+    \* Persist a new entity object *\
+    public void create(T entity);
+    
+    \* Persist an existing entity object *\
+    public void edit(T entity);
+    
+    \* Remove a persisted entity object *\
+    public void remove(T entity);
+    
+    \* Find a persisted entity object by unique database ID *\
+    public T find(Object id);
+    
+    \* Find all persisted entities of this entity class *\
+    public List<T> findAll();
+    
+    \* Find a range of persisted entities *\
+    public List<T> findRange(int[] range);
+    
+    \* Count of all persisted entities *\
+    public int count();
+    
+    \* Check that an entity object is 'valid' *\
+    public boolean validate(T entity);
+    
+}
+
+\end{verbatim}\end{small}
+\textit{Note that \texttt{find(Object id)} does not find an entity by it's own identification attribute (like UserID), it finds it by it's automatically generated unique ID it inherits from AbstractEntity after being persisted to the database. See section 5}
+
+\clearpage
+\subsubsection{Session sub-package}
+Session facade classes are facades for handling entity objects internally within the application. Each Entity class has a corresponding session facade class.
+
+\paragraph{UserFacade}
+Facade for the \textbf{User} entity. Validates user entities and has methods for retrieving user entities by user ID
+\begin{small}\begin{verbatim}
+@Stateless
+public class UserFacade extends AbstractFacade<User> {
+    @PersistenceContext(unitName = "MMP1PU")
+    private EntityManager em;
+
+    public boolean userIdExists(String userId);
+    public User findByUserId(String userId);    
+}
+\end{verbatim}\end{small}
+
+\paragraph{MonsterFacade}
+Facade for the \textbf{Monster} entity. Validates monster entities and has methods for retrieving monster entities by monster ID.
+\begin{small}\begin{verbatim}
+@Stateless
+public class MonsterFacade extends AbstractFacade<Monster> {
+    @PersistenceContext(unitName = "MMP1PU")
+    private EntityManager em;
+
+    public List<Monster> findByUserId(String userId);
+    public boolean monsterIdExists(String monsterId);
+}
+\end{verbatim}\end{small}
+
+\paragraph{FriendshipFacade}
+Facade for the \textbf{Friendship} entity. Validates Friendship entities and has many convenience methods for retrieving Friendships by various criteria.
+\begin{small}\begin{verbatim}
+@Stateless
+public class FriendshipFacade extends AbstractFacade<Friendship> {
+    @PersistenceContext(unitName = "MMP1PU")
+    private EntityManager em;
+    @EJB UserFacade userFacade;
+
+	public Friendship find(String localUserId, String remoteUserId, String remoteServerId);
+    public List<Friendship> findByLocalUserId(String localUserId);
+    public List<Friendship> findReceivedRequests(String localUserId);
+    public List<Friendship> findSentRequests(String localUserId);
+    public List<Friendship> findFriends(String localUserId);    
+}
+\end{verbatim}\end{small}
+
+\paragraph{ServerFacade}
+Facade for the \textbf{Server} entity. Has one extra method to find a Server by it's name.
+\begin{small}\begin{verbatim}
+@Stateless
+public class FriendshipFacade extends AbstractFacade<Friendship> {
+
+    @PersistenceContext(unitName = "MMP1PU")
+    private EntityManager em;
+    
+    public Server findByName(String name);
+        
+}
+\end{verbatim}\end{small}
+
+\subsubsection{Service sub-package}
+Service facades are for producing and consuming data over the REST service. They have methods which respond to REST requests (like GET, PUT, POST) and produce and/or consume the data passed through the request and response of those methods.
+\\Methods have special annotations from the Jersey REST library which describe how a method is invoked and how it should respond:
+\\\texttt{\textbf{@GET @POST @PUT @DELETE}} Which HTTP method it will respond to
+\\\texttt{\textbf{@Path("path/{arg}")}} Which path it will respond to and identified any parameters in that path
+\\\texttt{\textbf{@Produces("application/json")}} The MIME type of the data that the method will produce (response)
+\\\texttt{\textbf{@Consumes("application/json")}} The MIME type of the data that the method will consume (request)
+
+\paragraph{UserFacadeREST} The REST service facade for users. Produces JSON representations of local users
+\begin{small}\begin{verbatim}
+@Stateless
+@Path("users")
+public class UserFacadeREST extends AbstractFacade<User> {
+
+    @PersistenceContext(unitName = "MMP1PU")
+    private EntityManager em;
+
+    @GET
+    @Path("{userId}")
+    @Produces("application/json")
+    public User findByUserId(@PathParam("userId") String userId);
+
+    @GET
+    @Produces("application/json")
+    @Override
+    public List<User> findAll();
+
+}
+\end{verbatim}\end{small}
+
+
+\paragraph{FriendshipFacadeREST} The REST service facade for friendships. Responsible for receiving friend requests and request accepts and rejections from remote servers. Depends on \textbf{FriendshipFacade} (the session facade) for many Friendship entity lookup operations.
+\begin{small}\begin{verbatim}
+@Stateless
+@Path("friend")
+public class FriendshipFacadeREST extends AbstractFacade<Friendship> {
+
+    @PersistenceContext(unitName = "MMP1PU")
+    private EntityManager em;
+    @EJB
+    private UserFacade userFacade;
+    @EJB
+    private FriendshipFacade friendshipFacade;
+
+    @POST
+    @Consumes("application/json")
+    public Response receiveFriendRequest(Friendship f);
+
+    @POST
+    @Path("{localKey}")
+    @Consumes("text/plain")
+    public Response setRemoteKey(@PathParam("localKey") String localKey, String remoteKey);
+
+    @DELETE
+    @Path("{key}")
+    public Response remove(@PathParam("key") String key);
+
+    @Override
+    public boolean validate(Friendship f);
+    
+}
+\end{verbatim}\end{small}
+
+\clearpage
+\subsection{Client package}
+Client classes are for accessing REST resources on remote servers. They are for accessing information available through REST as well as posting information to other servers.
+
+\paragraph{FriendshipClient} Sending, accepting and rejecting friend requests and deleting existing friendships.
+\begin{small}\begin{verbatim}
+public class FriendshipClient {
+
+    public void sendFriendRequest(Friendship f);
+
+    /* Post the local key of a friendship to it's remote server */
+    public void sendKey(Friendship f);
+
+    public void delete(String key);
+
+}
+\end{verbatim}\end{small}
+
+
+
+\subsection{Filter package}
+Filters are classes which, when the server is configured to do so, get invoked before every request for a servlet. They decide whether the request should continue or not, and can override the request by, for example, redirecting the user.
+\paragraph{UserSessionFilter} This is the only servlet filter in the application, which ensures that most servlets can only be accessed when a valid user has logged in for the session. The application is configured on the server so that this filter is run during every servlet request. If a valid user exists in the HTTP session, it passes the request to the requested servlet, otherwise, it redirects the client to the Login servlet.\\
+This class does not need to be used by any other part of the application, so an interface description is not included.
+
+\subsection{Web folder}
+Web content is not contained in a Java package like classes are, but will be part of the application in its own folder.\\
+Web pages will be written as JSPs. JSP's are basically HTML files with special tags which contain instructions for the server to execute before it delivers the page to the client. The main use of these tags in the application will be to include data that has been forwarded to it from a servlet, and to iterate over that data, so that lists and tables can be dynamically generated. As well as these Java tags, everything that can be done in HTML files can be done in JSP's, such as CSS and JavaScript.
+
+\subsection{Mapping from requirements to classes}
+
+\begin{tabular}{|p{5cm}|p{11cm}|}
+\hline 
+\textbf{Requirement} & \textbf{Classes providing requirement} \\ 
+\hline 
+FR1 Server-based authentication & LoginServlet, RegisterServlet, UserSessionFilter, User, LocalUser, LocalUserFacade \\ \hline 
+FR2 Server friends list & Friendship, User, FriendshipFacade, HomeServlet, FriendsServlet \\ \hline 
+FR3 Server monster list & Monster, MonsterFacade, HomeServlet, MonstersServlet \\ \hline 
+FR4 Server monster mash management & Monster, MonsterFacade, MonsterController \\ \hline
+FR5 Server-server communication & Server, ServerFacadeREST, User, UserFacadeREST, Friendship, FriendshipFacadeREST, Monster, MonsterFacadeREST \\ \hline 
+FR6 Client options & (Servlets) \\ \hline  
+FR7 Startup of software in browser & LoginServlet, RegisterServlet \\ \hline  
+FR8 Game display in browser & (Servlets), UserSessionFilter \\ \hline  
+FR9 Friend matching & FriendsServlet, Friendship, FriendshipFacade, FriendshipFacadeREST, FriendshipClient, FriendshipController \\ \hline  
+FR10 Fight notifications &  MonsterController, User, Monster\\ \hline  
+FR11 Friends rich list &  User, UserFacade, FriendshipFacade\\ \hline  
+
+\end{tabular} 

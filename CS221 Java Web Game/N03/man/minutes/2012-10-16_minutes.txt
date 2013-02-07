@@ -1,0 +1,59 @@
+Title: Group Project 03
+Purpose: Weekly Project Meeting
+People present: Marcus Harrison, Craig Heptinstall, Kyle Vaughan, Scott Roe, 
+Kamilia Tacickaja, Nigel Hardy
+Apologies: James Bowcott, Simon Evans
+Date: 16/10/12
+Place: Llandinam C55
+Author of the Minutes: Marcus Harrison
+Date the Minutes were produced: 16/10/12
+Version: 1.0
+
+If any errors are present, please CAREFULLY make corrections, increase the 
+version number by 0.1 and re-send to this list. Thank you.
+
+Matters arising:
+
+in the previous meeting we had not decided on assigned roles for Leader, 
+Deputy Leader or QA Leader. 
+Methods of communication had not been decided upon.
+
+
+New Business:
+
+After research from the previously assigned members, the current decisions 
+have been made regarding the technology used:
+for version control, SVN will be used;
+for the server software, Glassfish will be used;
+for programming, the IDE Eclipse will be used;
+for documentation, LaTeX will be used;
+for UML Diagram design, StarUML will be used.
+
+The following formal roles have been assigned:
+Scott: Leader
+Craig: Deputy Leader
+
+The following tasks have been assigned:
+Craig: Use-case study and program flow
+Marcus: set up SVN repository; design database; study Glassfish
+Kamilia: User Interface Design and mock-ups.
+
+
+Any Other Business:
+
+Programming Design and Testing - it has been established that we are to use 
+TEST-DRIVEN DESIGN. Tests are to be written before the relevant element of the 
+program.
+System testing is also to be done, by someone outside the design or 
+programming teams.
+Test documentation is quite comprehensive and who does which documentation is 
+yet to be decided.
+We are all to study LaTeX (I recommend http://en.wikibooks.org/wiki/LaTeX), in 
+particular embedding our UML diagram into a LaTeX document.
+We must have versions of Eclipse and Glassfish installed on our personal 
+machines that are the same version number as those on the University 
+computers.
+
+
+Marcus Harrison
+Computer Science - Open Source Computing

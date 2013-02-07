@@ -1,0 +1,229 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx} \usepackage{caption} \usepackage{pdfpages} \usepackage{pdflscape} \usepackage[margin=0.8in]{geometry} \usepackage{fancyhdr} \usepackage{pdfpages} \usepackage{lastpage}
+\begin{document}
+\pagestyle{fancy}
+\fancyfoot[RO, LE] {\thepage\ of \pageref{LastPage}}
+\fancyhead[LO, LE]{Final Report, v0.5, Draft} %Name of doc, version, draf/release
+\fancyfoot[C]{Aberystwyth University / Computer Science} %Footer - no changes necessary
+\begin{center}
+\textsc{\LARGE The Software Development Life Cycle}\\[1.5cm]\includegraphics[width=0.15\textwidth]{img/monster.png}\\[1.5cm] %Monster image
+\textsc{\Large Monster Mash - Project Test Report}\\[0.5cm] %Edit for document title
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Scott \textsc{Roe}\\
+Simon \textsc{Evans}\\
+Craig \textsc{Heptinstall}\\
+Kyle \textsc{Vaughan}\\
+%Repeat above line for more authors
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Task ID: SE\_03\_REPORT}
+%Name of task\\
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Version: 0.5}
+%Name of version\\
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Status: Draft}
+%Status of document\\
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+%Computer Science Dept Address
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+Department of Computer Science\\
+Aberystwyth University\\
+Aberystwyth\\
+Ceredigion\\
+SY23 3DB\\
+\end{flushleft}
+\end{minipage}
+\vfill
+{\large \today}
+\end{center}
+\clearpage
+\setlength\parindent{0pt}
+
+%Table of contents
+
+\tableofcontents
+\clearpage
+
+\section{Project Test Report}
+\subsection{Purpose}
+This appendix coincides with the QA document for the final report\cite{Software Engineering Group Projects. QA Final Report.} and includes the final test table which indicates the results of each test produced from the test plan document \cite{Test Plan}. The table contains all the relevant test data, including indication whether or not the test passed, and includes notes where a test has failed. Some tests have been grouped in the case of explanations, and referecned to the relevant tests that failed similarly. The explanations are mainly a key to providing reasoning why the test failed.
+\clearpage
+
+\begin{landscape}
+\begin{center}
+\thispagestyle{empty}
+
+	\begin{tabular}{| l | l | p{3cm} | p{3cm} | p{4cm} | p{4cm} |p{1cm} |p{3cm} |}
+\hline
+Test Ref & Req being Tested & Test Content & Input & Output & Test Criteria & Test Pass? & Notes\\ \hline
+	SE-N03-01 & FR1 & Search friends. &  User inputs friends user name. & Notification lists all similar names or the individual name. & Friends information appears on screen and allows user to decide what to do next with friend. & Y & N/A\\
+\hline
+	SE-NO3-02 & FR2 & Select friend from list on server & User searches list for friends on server. & List displays all users on server for selection. & User should see list of friends on server on-screen.  & Y & N/A\\
+\hline
+	SE-N03-03 & FR2,FR6,FR9 & Accept/decline invite
+ & Friend accepts invite. & Notification appears informing friend that user has sent an invite. & Friend is able to accept of decline invite. & Y & N/A\\
+\hline
+  	  SE-N03-04 & FR2,FR6,FR9 & Add friends, Sending request. & User searches for friend and clicks button to add . & Notification appears to inform user that friend has been added successfully. & Add was successful and friend has received request for add. & Y & N/A\\
+\hline
+	  SE-N03-05 & FR3& Check that the monsters are shown correctly . &User navigates to monsters page. & All currently owned monsters are shown. & All monsters are shown along with their various traits such as health etc.. & Y & N/A\\
+\hline
+	SE-N03-06 & FR3 & User can remove monster from farm. & User navigates to monster's page and clicks on submit to delete monster. & Monster should be permanently removed from farm. & After clicking on submit, a confirmation message should appear asking the user if they are sure they want to remove the monster. On accepting, the monster should be removed from the farm. & Y & N/A\\                         
+\hline
+	SE-N03-07 & FR4 & Check that propose battle function works correctly. & User enters opponents name and submits. & User enters opponents name and submits. & Information is sent and message appears to inform user that the request  has been sent. & N & Battle commenced instantly and did not send a request to the other user. Opponent therefore could not accept or decline the fight. Fight takes place automatically.\\
+\hline
+	SE-N03-08 & FR4 & Check that opponent can accept battle. & Recipient chooses to accept battle. & Recipient receives notification explaining battle is accepted. & Recipient receives notification and can accept battle. & N & \emph{See explanation for test SE-N03-07}\\
+\hline
+
+\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\thispagestyle{empty}
+		
+	\begin{tabular}{| l | l | p{3cm} | p{3cm} | p{4cm} | p{4cm} |p{1cm} |p{3cm} |}
+\hline
+	SE-N03-09 & FR4 & Check that opponent can decline battle. & Recipient chooses to decline battle. & Recipient receives notification explaining battle has been declined. & Recipient receives notification and can decline battle.& N & \emph{See explanation for test SE-N03-07} \\
+\hline
+	SE-N03-10 & FR4 &Check that opponent can choose monster for battle. & User selects monster from list of currently owned monsters. & Message informing the user that the monster has been selected. & Message informs the user, and sends to battle. & N & User selects both the monsters to battle including the other users. Opponent does not have option of which monster to pick. \\
+\hline
+	SE-NO3-11 & FR5 & Search other servers for friends &  User selects other server to search for friends. & List should appear showing all users on selected server. & User should see list of users on selected server on-screen.  & Y & N/A\\
+\hline
+	SE-N03-12 & FR6 & User can change their avatar. & User navigates to settings page and chooses their file using the 'Choose File' button. The user should then click on 'Submit'. & Their avatar should be changed to the file they uploaded. & When the user submits their file, their profile avatar should change to the uploaded file.& Y & N/A\\
+\hline
+	SE-N03-13 & FR6 & User can change their password. & User navigates to settings page and enters their current password, and their new desired password in the new password field and confirm password field. & On clicking 'Submit' a message should tell the user their password has been changed. & On submitting the new password, a message should appear to the user and the database should change the user's current password to the new one entered.& Y & N/A\\
+\hline
+	SE-N03-14 & FR6 & User can change their name. & User navigates to settings page and enters their desired new name and then clicks on 'Submit'. & A message should tell the user their information has been updated. & After submitting their new name, the user should be told their information has been changed and their name should be changed in the database.& Y & N/A\\
+\hline
+	
+\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\thispagestyle{empty}
+	\begin{tabular}{| l | l | p{3cm} | p{3cm} | p{4cm} | p{4cm} |p{1cm} |p{3cm} |}
+\hline
+	SE-N03-15 & FR6 & User can delete friend from friends list. & User navigates to friends list and click on 'Delete Friend'. & The friend should be removed from the friends list. & After clicking on 'Delete Friend' a confirmation message should ask the user if they're sure. On confirming, the friend should be removed from the friends list.& Y & N/A\\
+\hline
+          SE-N03-16 & FR6 & Monsters incompatible to breed. & User sends request to breed. & Request send to friend, friend chooses monster. & Error message appears informing user/friend that monsters are incompatible to breed. & N & Does not allow checking of same sex monsters when breeding.\\
+\hline
+	SE-N03-17 & FR6 & Purchase monsters for gold. & User sends purchase. & Trade takes place and monster is in users farm. &  Purchase has been sent to friend. & Y & N/A \\
+\hline
+	SE-N03-18 & FR6 & Put up monster for sale. & User sends request to sell. & Monster appears in the selling section on home page. &  Request has been sent to market for trade. & Y & N/A \\
+\hline
+	SE-N03-19 & FR6 & Set price of monster for sale. & User chooses amount to see monster. & Notification appears on friends page informing that user wishes to trade for amount. & Trade is availible for set price. & Y & N/A \\
+	\hline
+	SE-N03-20 & FR6 & Breed monsters. & Users select availible monster that they wish to breed. & Notification informs user of monsters chosen. & Monsters are bred. & Y & N/A \\
+	\hline
+	SE-N03-21 & FR6 & Propose breed for price. & User chooses monster to breed and sends to market. &Users monster placed on home page. & Notification informs user that monster has been sentto market & Y & N/A \\
+\hline
+	SE-N03-22 & FR6 & Purchase breed. & Friend chooses to purchase breed. & Friend receives possible breed. & Friend accepts breed and monsters are paired to breed. & Y & N/A \\
+\hline
+	SE-N03-23 & FR6 & Select monster price for breed. & User chooses monster price for breeding. & Request is sent to market. & Breed has been placed on market at given price. & Y & N/A \\
+\hline
+	SE-NO3-24 & FR6 & Decline Trade. User selects the decline option for trade & Notification informs user that someone wishes to trade, once declined, message is sent to person who proposed trade. & Notification informs user that someone wishes to trade, user has option to decline.& Trade Cancelled & N & Option not availible, as user can only choose to accept if they want.\\
+\hline
+
+\end{tabular}
+\end{center}
+
+\clearpage
+
+\begin{center}
+\thispagestyle{empty}
+
+	\begin{tabular}{| l | l | p{3cm} | p{3cm} | p{4cm} | p{4cm} |p{1cm} |p{3cm} |}
+\hline
+	SE-NO3-25 & FR6 & Test admin page to remove accounts & Admin is able to remove account & Page informs admin that account has been removed & Admin is able to delete account, and account has been removed from database & Y & N/A\\
+\hline
+	SE-NO3-26 & FR6 & Change account password & User enters old password and new password & option is displayed for user to enter old password and new & User should be able to successfully change password. & Y & N/A\\
+\hline
+	SE-NO3-27 & FR6 &  Change Password incorrectly, passwords don't match & User enters new password, but new passwords don't match. & notification informs user that passwords don't match. & notification informs user that new passwords don't match, user will need to try again. & Y & N/A\\
+\hline
+	SE-NO3-28 & FR6 & Change Password incorrectly, password too short & User enters new password, but new password is too short. & notification informs user that password is too short. & notification informs user that new password is too short, user will need to try again. & Y & N/A\\
+\hline
+	SE-N03-29 & FR7 & Login. &  User enters user name and password. & Notification message appears informing user that they have logged on successfully. & Welcome notification appears and user is directed to home page.& Y & N/A \\
+\hline
+	SE-N03-30 & FR7 & Input incorrect user details. & User logs in with incorrect details. & Notification should appear saying incorrect details. & User should see notification asking them to try again. & Y & N/A\\
+\hline
+	SE-N03-31 & FR7 & Input correct user details. & User logs in. & Rich list will appear on home page. & User should see a list of his/her friends and the wealth of each. List should be ordered by wealth. & Y & N/A\\
+\hline
+	SE-N03-32 & FR7 & Registering: enter password. &  User enters password. & Notification message informs user that they have logged in correctly. & Details were entered correctly and user is directed to homepage. & N & Notification does not pop up informing of successful login and just takes user straight to home page.\\
+\hline
+	SE-N03-33 & FR7 & Registering: enter password incorrectly, or password is too short. & User enters password that is too small or incorrect format. & Error message appears informing user that password is too short or incorrect. & User is prompted to re-enter password. & N & Appears to be no limit on minimal amount of password characters, or in the wrong format. \\
+\hline
+
+\end{tabular}
+\end{center}
+
+\clearpage
+\begin{center}
+\thispagestyle{empty}
+
+	\begin{tabular}{| l | l | p{3cm} | p{3cm} | p{4cm} | p{4cm} |p{1cm} |p{3cm} |}
+\hline
+	SE-N03-34 & FR7 & Login: incorrect user name and/or password. &  User enters user name and/or password incorrectly. & Error message appears informing user that details have been input incorrectly. &  Error message appears and user is prompted to re-enter user name and password. & Y & N/A\\
+\hline
+	SE-N03-35 & FR7 & Logout function. & User presses logout button on any page. & Should be logged out and notified. & After logging out, notification should confirm logging out and go to home page of login. & Y & N/A\\
+\hline
+	SE-N03-36 & FR7 & Registering: enter user name and password. & Submits and takes new user to their home page. & After clicking submit and checks have been performed, should take user to their new home page. & After clicking submit and checks have been performed, should take user to their new home page  & Y & N/A\\
+\hline
+	SE-N03-37 & FR7 & Registering: enter user name incorrectly, or user name already taken. & User registers with a name already taken and submits. & Notification should appear informing them they cannot have user name & User is notified of incorrect user name or that it is taken and stays on the register page for them to re-register. & Y & N/A\\
+\hline
+	SE-N03-38 & FR10 & Check that results are shown after battle. & Users have agreed to battle. & Message showing 	the results of battle. & Message appears on screen to show results of battle, and the victor has earned to amount of money that was agreed on.  & Y & N/A\\
+\hline
+	SE-N03-39 & FR11 & User can view friend rich list. & User logs in and rich list is displayed. & Rich list will appear on home page. & User should see a list of his/her friends and the wealth of each. List should be ordered by wealth. & N & No availible rich list to view\\
+\hline
+	SE-N03-40 & FR7 & Check password does not match user name. & User registers with a password and user name that match. & Notify user password is not allowed and should be different to user name. & User should be notified and taken back to registration to try again. & N & Allows user to register password same as user name, which it should notify about.\\
+\hline
+	SE-N03-41 & FR7 & Check password is not empty. & User registers with a password that is empty/ null. & Notify user password is not allowed and should be minimal amount. & User should be notified and taken back to registration to try again. & Y & N/A\\
+\hline
+
+\end{tabular}
+\end{center}
+\end{landscape}
+
+\section{References}
+\begin{thebibliography}{9}
+\bibitem{Software Engineering Group Projects. QA Final Report.} Software Engineering Group Projects. Producing A Final Report. C. J. Price, N. W. Hardy and B.P Tiddeman. SE.QA.01. 1.6. Release.
+\bibitem{Test Plan} Software Engineering Group Projects. Testing Plan. C. Heptinstall, A. Morgan and K. Vaughan. SE.03.Testing. 2.0. Release.
+\end{thebibliography}
+
+\section{Document History}
+\begin{tabular}{|l | l | l | l | l |}
+\hline
+Version & CCF No. & Date & Changes made to Document & Changed by \\
+\hline
+0.1 & N/A & 29/01/2013 & Creation of document & SIE5\\
+\hline
+0.5 & N/A & 30/01/2013 & Initial creation of test results table and introduction & CRH13, KYV\\
+\hline
+0.6 & N/A & 01/02/2013 & Completion of table of test results & CRH13, KYV\\
+\hline
+\end{tabular}
+\end{document}

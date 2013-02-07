@@ -1,0 +1,31 @@
+Title: Group Project 03
+Purpose: Weekly Project Meeting
+People present: Aled Morgan, Marcus Harrison, Craig Heptinstall, Kyle Vaughan, Scott Roe, Simon Evans, Kamilia Tacickaja, Nigel Hardy
+Date: 23/10/12
+Place: Llandinam C55
+Author of the Minutes: Simon Evans
+Date the Minutes were produced: 24/10/12
+Version: 1.0
+
+Matters arising:
+
+Discussed testing, SVN and server - server technology.
+
+Main business:
+
+* It has been pointed out that all software agreed upon to use on the project is currently installed on university machines, except Star UML. Group members have been made aware of this.
+* SVN repository has been set up
+* Marcus and James are to meet up with other groups for server - server issues
+* James has suggested that the group uses Glassfish instead of Google API - after writing servlets himself and having studied both
+* Glassfish version 3.x to be used
+* System testing to be carried out by people not in the design team (where possible)
+* Eclipse is still the standard software to be used, however NetBeans will work if group members wish to use that instead
+* Kyle to start work on test specification
+* Timesheets need to be sent to Scott ASAP - any project related work will go towards total time spent, except group meetings with Nigel themselves
+
+Action for next week:
+
+* Project Plan to be created during the week, in order to hand in on 30th October
+* Group members are to familiarise themselves with SVN
+* Kyle should have a rough idea of what the test document will require (how much time needed/etc)
+* Review meetings to be set up in advance, the QA Manager, Project Leader and anyone involved in said item should be present, in addition to other group members

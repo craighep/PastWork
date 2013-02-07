@@ -1,0 +1,117 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx} \usepackage{caption} \usepackage{pdfpages} \usepackage{pdflscape} \usepackage[margin=0.8in]{geometry} \usepackage{fancyhdr} \usepackage{pdfpages}
+\usepackage{amsmath} \usepackage{lastpage}
+\begin{document}
+\pagestyle{fancy}
+\fancyfoot[RO, LE] {\thepage\ of \pageref{LastPage}}
+\fancyhead[LO,LE]{Design Specification, 1.1, Release} %Name of doc, version, draf/release
+\fancyfoot[C]{Aberystwyth University / Computer Science} %Footer - no changes necessary
+\begin{center}
+\textsc{\LARGE The Software Development Life Cycle}\\[1.5cm]\includegraphics[width=0.15\textwidth]{img/monster.png}\\[1.5cm] %Monster image
+\textsc{\Large Monster Mash - Design Specification}\\[0.5cm] %Edit for document title
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+James \textsc{Bowcott}\\
+Marcus \textsc{Harrison}\\
+Kamilia \textsc{Tacickaja}\\
+%Repeat above line for more authors
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Task ID:}
+SE\_03\_DESIGN\_DOCUMENT
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Version:}
+1.1
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Status:}
+Release
+\end{flushleft}
+\end{minipage}
+\vspace{8 mm}
+
+%Computer Science Dept Address
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+Department of Computer Science\\
+Aberystwyth University\\
+Aberystwyth\\
+Ceredigion\\
+SY23 3DB\\
+\end{flushleft}
+\end{minipage}
+\vfill
+{\large \today}
+\end{center}
+\clearpage
+\setlength\parindent{0pt}
+
+\tableofcontents
+
+%--------------------------------------------------------------------
+
+\clearpage
+\include{introduction}
+
+\clearpage
+\include{architecture}
+
+\clearpage
+\include{classes}
+
+\clearpage
+\include{inheritence}
+
+\clearpage
+\include{inputoutput}
+
+\clearpage
+\include{entities}
+
+\clearpage
+\include{detaileddesign}
+
+\clearpage
+%--------------------------------------------------------------------
+
+%\section{References}
+%[1] \textit{Title of ref.} Author, version, etc.
+%Reference here 
+%\\ \relax \\ \relax
+
+\section{Document History}
+\begin{tabular}{| l | l | l | p{9cm} | p{2cm} |}
+\hline
+Version & CCF No. & Date & Changes made to Document & Changed by \\
+\hline
+0.1 & N/A & 22/11/12 & Initial draft & jab41\\
+\hline
+0.2 & N/A & 26/11/12 & Updated Application Architecture, added Data Entity Design, Inter-server Communication and Significant Algorithms:MonsterController & jab41, mah48\\
+\hline
+0.3 & N/A & 28/11/12 & Updated Decomposition Description, added Required libraries. Added Class Inheritance and Dependencies. Re-written Data Entity Design & jab41\\
+\hline
+0.4 & N/A & 01/12/12 & Restructuring. Included interface descriptions for all classes. Updated nearly every section. & jab41 \\
+\hline
+0.5 & N/A & 05/12/12 & Added Input/Output section. & kat15 \\
+\hline
+1.0 & N/A & 07/12/12 & Tidy up. & jab41 \\
+\hline
+1.1 & 1 & 07/12/12 & QA modifications - spelling/grammar. & sie5 \\
+\hline
+\end{tabular}
+\end{document}

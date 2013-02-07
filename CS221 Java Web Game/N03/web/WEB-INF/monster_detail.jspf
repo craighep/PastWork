@@ -1,0 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page language="java" session="true" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<table>
+    <tr><td><strong>ID:</strong></td><td>${monster.monsterID}</td></tr>
+    <tr><td><strong>Birthday:</strong></td><td><fmt:formatDate type="both" value="${monster.birthday}" /></td></tr>
+    <tr><td><strong>Age:</strong></td><td><img src="images/str_<fmt:formatNumber type="number" value="${(1.0 - monster.age) * 10}" maxFractionDigits="0"/>.png" /></td></tr>
+    <tr><td><strong>Strength:</strong></td><td> <img src="images/str_<fmt:formatNumber type="number" value="${monster.currentStrength * 10}" maxFractionDigits="0" />.png" /></td></tr>
+    <tr><td><strong>Defence:</strong></td><td> <img src="images/str_<fmt:formatNumber type="number" value="${monster.currentDefence * 10}" maxFractionDigits="0" />.png" /></td></tr>
+    <tr><td><strong>Health:</strong></td><td> <img src="images/str_<fmt:formatNumber type="number" value="${monster.currentHealth * 10}" maxFractionDigits="0" />.png" /></td></tr>
+    <c:if test="${monster.saleOffer gt 0}">
+    <tr><td><strong>Sale offer: </strong></td><td>£${monster.saleOffer}</td></tr>
+    </c:if>
+    <c:if test="${monster.breedOffer gt 0}">
+    <tr><td><strong>Breed offer: </strong></td><td>£${monster.breedOffer}</td></tr>
+    </c:if>
+</table>
